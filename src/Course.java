@@ -9,7 +9,7 @@
 import java.time.LocalDateTime;
 
 public class Course extends Event {
-    private String name;
+   // private String name;
     private String instructor;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
@@ -23,9 +23,9 @@ public class Course extends Event {
         this.credits = credits;
     }
     
-    public String getName() {
-        return name;
-    }
+    //public String getName() {
+      //  return name;
+    //}
 
     public String getInstructor() {
         return instructor;
