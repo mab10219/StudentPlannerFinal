@@ -9,38 +9,31 @@
 import java.time.LocalDateTime;
 
 public class Course extends Event {
-   // private String name;
     private String instructor;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
     private int credits;
+    private LocalDateTime lastClass; 
+    private int interval; //time interval between classes, in days (for recurring events)
     
-    public Course(String name, String instructor, int credits, LocalDateTime startDate, LocalDateTime endDate) {
-        super(name);
+    public Course(String name, String instructor, int credits, LocalDateTime startDateTime, LocalDateTime lastClass) {
+        super(name, startDateTime); //initialize name and time fields in Event class
         this.instructor = instructor;
-        this.startDate = startDate;
-        this.endDate = endDate;
         this.credits = credits;
+        this.lastClass = lastClass;
     }
     
-    //public String getName() {
-      //  return name;
-    //}
-
     public String getInstructor() {
         return instructor;
     }
     
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-    
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
     public int getCredits(){
         return credits;
     }
     
-
+    public LocalDateTime getLastClass() {
+        return lastClass;
+    }
+    
+    public void display() {
+        System.out.println(getDateTime().toString() + " - " + getName() + " | Instructor: " + instructor + " | Credits: " + credits);
+    }
 }

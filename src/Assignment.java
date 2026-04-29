@@ -7,21 +7,19 @@ import java.time.LocalDateTime; //for the due date field, track upcoming dates i
     
 */
 public class Assignment extends Event {
-    private LocalDateTime dueDate; //due date field to track upcoming dates in order
     private String associatedCourse; //course field to link assignment to a course (organization and filtering)
 
     public Assignment(String name, LocalDateTime dueDate, String associatedCourse){
-        super(name);
-        this.dueDate = dueDate;
+        super(name, dueDate);
         this.associatedCourse = associatedCourse;
-    }
-
-    public LocalDateTime getDueDate() {
-        return dueDate;
     }
 
     public String getAssociatedCourse() {
         return associatedCourse;
+    }
+
+    public void display() {
+        System.out.println(getDateTime().toLocalTime().toString() + " - " + getName() + " | Course: " + associatedCourse);
     }
 }
     
