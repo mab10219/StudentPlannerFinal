@@ -13,12 +13,14 @@ public class Course extends Event {
     private String instructor;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private int credits;
     
     public Course(String name, String instructor, int credits, LocalDateTime startDate, LocalDateTime endDate) {
         super(name);
         this.instructor = instructor;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.credits = credits;
     }
     
     public String getName() {
@@ -36,5 +38,9 @@ public class Course extends Event {
     public LocalDateTime getEndDate() {
         return endDate;
     }
+    public int getCredits(){
+        return credits;
+    }
+    
 
 }
