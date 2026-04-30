@@ -136,7 +136,7 @@ public class StudentPlanner {
         }
         //delete choice functionality:
         else{
-            System.out.println("Please choose an option!: ");
+            System.out.println("Please choose an option: ");
             System.out.println("...........................");
             System.out.println("\n1) Delete a Course");
             System.out.println("2) Delete an Assignment");
