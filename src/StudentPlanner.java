@@ -99,7 +99,18 @@ public class StudentPlanner {
 
             System.out.print("Associated Course: ");
             String course = scanner.nextLine();
-            //TO DO: add error handling for course input (check if course exists in planner)
+            //check if the course exists in the planner before adding the assignment:
+            boolean courseExists = false;
+            for(Course c : planner.getCourses()){
+                if(c.getName().equalsIgnoreCase(course)){
+                    courseExists = true;
+                    break;
+                }
+            }
+            if(!courseExists){
+                System.out.println("Course not found. Please add the course before adding the assignment.");
+                return;
+            }
 
             planner.addAssignment(new Assignment(name, dueDate, course));
         } else {
