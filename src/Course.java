@@ -41,9 +41,13 @@ public class Course extends Event {
         return meetingDays;
     }
     
-    public void display() {
-        System.out.println(getDateTime().toString() + " - " + getName() + " | Instructor: " + instructor + " | Credits: " + credits);
-    }
+   // public void display() {
+        //System.out.println(getDateTime().toString() + " - " + getName() + " | Instructor: " + instructor + " | Credits: " + credits);
+   // }
+   //Mia: made the display for course and assignments for view schedule a bit cleaner
+   public void display() {
+    System.out.println(getDateTime().toLocalTime() + " - " + getName() + " (Class)");
+}
 
     public List<LocalDateTime> getOccurrences() {
         List<LocalDateTime> dates = new ArrayList<>();

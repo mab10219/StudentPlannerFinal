@@ -126,7 +126,8 @@ public class StudentPlanner {
         for (Assignment a: planner.getAssignments()){
             if( a.getAssociatedCourse().equalsIgnoreCase(searchName)){
                 foundEvent = true;
-                System.out.println("Assignment: " + a.getName() + " | Due: " + a.getDateTime().toString());
+                System.out.println("Assignment: " + a.getName() + " | Due: " + 
+                    a.getDateTime().format(dateTimeFormatter) + " | Course: " + a.getAssociatedCourse());
             }
         }
         if (!foundEvent) {

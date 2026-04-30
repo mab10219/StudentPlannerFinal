@@ -18,8 +18,12 @@ public class Assignment extends Event {
         return associatedCourse;
     }
 
+    //public void display() {
+        //System.out.println(getDateTime().toLocalTime().toString() + " - " + getName() + " | Course: " + associatedCourse);
+    //}
+    //Mia: made the display for course and assignments for view schedule a bit cleaner
     public void display() {
-        System.out.println(getDateTime().toLocalTime().toString() + " - " + getName() + " | Course: " + associatedCourse);
+        System.out.println(getDateTime().toLocalTime() + " - " + getName() + " (Assignment) | Course: " + associatedCourse);
     }
 }
     

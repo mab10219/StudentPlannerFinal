@@ -95,8 +95,16 @@ public class Planner{
                     firstEventinWeek = false;
                 }
 
-                if(events.get(currentEvent).getDateTime().isAfter(weekStart.plusDays(1))) {
+                /* 
+                //if(events.get(currentEvent).getDateTime().isAfter(weekStart.plusDays(1))) {
                     firstEventinDay = true; //reset daily header for each new day
+                }*/
+               //fixes daily header logic: (before it was only checking if the current event was on a different day than the previous event,
+               //  but this caused an issue where if there were multiple events on the same day, 
+               // the daily header would only display for the first event and not subsequent events on the same day)
+                if(currentEvent > 0 && !events.get(currentEvent).getDateTime().toLocalDate()
+                    .equals(events.get(currentEvent - 1).getDateTime().toLocalDate())) {
+                    firstEventinDay = true;
                 }
                 
                 //daily header
