@@ -131,13 +131,39 @@ public class StudentPlanner {
         }
         if (!foundEvent) {
             System.out.println("No results for " + searchName);
-            return;
+            System.out.println("Please press enter to go back to main page");
+            scanner.nextLine();
         }
+        //delete choice functionality:
+        else{
+            System.out.println("Please choose an option!: ");
+            System.out.println("...........................");
+            System.out.println("\n1) Delete a Course");
+            System.out.println("2) Delete an Assignment");
+            System.out.println("3) Back to main window");
+            System.out.print("Enter your choice: ");
 
+            String deleteChoice = scanner.nextLine().trim();
 
+            //user chooses to delete a course:
+            //TODO: maybe have all associated assignments deleted with the course as well?
+            if(deleteChoice.equals("1")){
+                System.out.print("Enter the name of the course name to delete: ");
+                String deleteName = scanner.nextLine();
+                planner.removeCourse(deleteName);
+                System.out.println("Course sucessfully deleted. Press enter to go back to main window.");
+                scanner.nextLine();
+            }
+            //user chooses to delete an assignment:
+            else if(deleteChoice.equals("2")){
+                System.out.print("Enter the name of the assignment to delete: ");
+                String deleteName = scanner.nextLine();
+                planner.removeAssignment(deleteName);
+                System.out.println("Assignment sucessfully deleted. Press enter to go back to main window.");
+                scanner.nextLine();
 
-
-
+            }
+        }
     }
 
     private static void ViewSchedule() {
