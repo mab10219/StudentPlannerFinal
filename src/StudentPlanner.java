@@ -106,8 +106,38 @@ public class StudentPlanner {
             System.out.println("Invalid event type.");
         }
     }
-
+    //SearchEvents()searches for a course by name and displays all associated assignments
+    //andd offers the option to delete a course or assignment from the results
     private static void SearchEvents() {
+        System.out.print("Enter the course you would like to search by: ");
+        String searchName = scanner.nextLine().trim();
+        boolean foundEvent = false;
+        System.out.println("\nSearch Results:");
+        System.out.println(".........................................");
+
+        //search loop for matching course:
+        for (Course c: planner.getCourses()){
+            if (c.getName().equalsIgnoreCase(searchName)){
+                foundEvent = true;
+                System.out.println("Course: " + c.getName() + " | Instructor: " + c.getInstructor() + " | Credits: " + c.getCredits());
+            }
+        } 
+        //loop to find assignments associated to found courses:
+        for (Assignment a: planner.getAssignments()){
+            if( a.getAssociatedCourse().equalsIgnoreCase(searchName)){
+                foundEvent = true;
+                System.out.println("Assignment: " + a.getName() + " | Due: " + a.getDateTime().toString());
+            }
+        }
+        if (!foundEvent) {
+            System.out.println("No results for " + searchName);
+            return;
+        }
+
+
+
+
+
     }
 
     private static void ViewSchedule() {
