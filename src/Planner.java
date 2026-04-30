@@ -56,9 +56,12 @@ public class Planner{
         ArrayList<Event> events = new ArrayList<>();
         int currentEvent = 0; //index to keep track of where we are in the events list as we display
 
-        for (Course course: courses){
-            //TODO: figure out had to add recurring events for each course based on the start date and interval (weekly, biweekly, etc.)
-            events.add(course);
+        for (Course course: courses){            
+           course.getOccurrences();
+           for (LocalDateTime date: course.getOccurrences()) {
+                Course occurrence = new Course(course.getName(), course.getInstructor(), course.getCredits(), date, course.getLastClass(), course.getMeetingDays());
+                events.add(occurrence);
+            }
         }
         for (Assignment assignment: assignments){
             events.add(assignment);
@@ -92,12 +95,17 @@ public class Planner{
                     firstEventinWeek = false;
                 }
 
+                if(events.get(currentEvent).getDateTime().isAfter(weekStart.plusDays(1))) {
+                    firstEventinDay = true; //reset daily header for each new day
+                }
+                
                 //daily header
                 if(firstEventinDay) {
                     System.out.println(events.get(currentEvent).getDateTime().getDayOfWeek());
                     firstEventinDay = false;
                 }
                 events.get(currentEvent).display();
+                
                 currentEvent++;
             }
         }
