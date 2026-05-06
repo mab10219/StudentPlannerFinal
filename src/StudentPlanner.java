@@ -8,6 +8,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+
 /*
     * StudentPlanner.java:
     * Main class to run the student planner program, contains the main method and user interface
@@ -31,7 +33,7 @@ public class StudentPlanner {
             System.out.println("\n1. Add Event");
             System.out.println("2. Search Events");
             System.out.println("3. View Schedule");
-            System.out.println("4. Import Existing Data");
+            System.out.println("4. Import Existing Data (this will ADD data to your existing schedule)");
             System.out.println("5. Save Current Data");
             System.out.println("6. Quit");
             System.out.print("Choose an option: ");
@@ -187,9 +189,11 @@ public class StudentPlanner {
                 }
 
                 //delete all assignments associated with the deleted course
-                for(Assignment a: planner.getAssignments()){
-                    if( a.getAssociatedCourse().equalsIgnoreCase(deleteName)){
-                        planner.removeAssignment(a.getName());
+                Iterator<Assignment> it = planner.getAssignments().iterator();
+                while (it.hasNext()) {
+                    Assignment a = it.next();
+                    if (a.getAssociatedCourse().equalsIgnoreCase(deleteName)) {
+                        it.remove();
                     }
                 }
 
@@ -218,8 +222,10 @@ public class StudentPlanner {
             //opens the data file
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(COURSE_FILE_NAME));
             ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(ASSIGNMENT_FILE_NAME));
-
+            
+            @SuppressWarnings("unchecked")
             ArrayList<Course> courses = (ArrayList<Course>) in.readObject();
+            @SuppressWarnings("unchecked")
             ArrayList<Assignment> assignments = (ArrayList<Assignment>) in2.readObject();
 
             planner.addAssignmentList(assignments);

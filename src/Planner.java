@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Planner{
     private ArrayList<Course> courses;
     private ArrayList<Assignment> assignments;
-    private int courseCount; 
 
     public Planner(){
         courses = new ArrayList<>();
@@ -53,7 +52,7 @@ public class Planner{
     }
     //removes entire course from planner by name:
     public void removeCourse(String name){
-        for( int i= 0; i <courses.size(); i++){
+        for(int i= 0; i <courses.size(); i++){
             if (courses.get(i).getName().equalsIgnoreCase(name)){
                 courses.remove(i);
                 return;
@@ -100,7 +99,7 @@ public class Planner{
             while (currentEvent < events.size() && events.get(currentEvent).getDateTime().isBefore(weekEnd)) {
                 //weekly header
                 if (firstEventinWeek) {
-                    System.out.println("Week of " + weekStart.toLocalDate());
+                    System.out.println("\nWeek of " + weekStart.toLocalDate());
                     firstEventinWeek = false;
                 }
 
