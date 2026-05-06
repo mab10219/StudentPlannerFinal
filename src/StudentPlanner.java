@@ -116,15 +116,20 @@ public class StudentPlanner {
 
             System.out.print("Associated Course: ");
             String course = scanner.nextLine();
-            try{
-            //TO DO: add error handling for course input (check if course exists in planner)
-                planner.addAssignment(new Assignment(name, dueDate, course));
-
-            }catch(Exception e){
-                System.out.println("Course " + course + " not found in planner. Please add the course before adding an assignment.");
+            //check if the course exists in the planner before adding the assignment:
+            boolean courseExists = false;
+            for(Course c : planner.getCourses()){
+                if(c.getName().equalsIgnoreCase(course)){
+                    courseExists = true;
+                    break;
+                }
+            }
+            if(!courseExists){
+                System.out.println("Course not found. Please add the course before adding the assignment.");
                 return;
             }
 
+            planner.addAssignment(new Assignment(name, dueDate, course));
         } else {
             System.out.println("Invalid event type.");
         }
