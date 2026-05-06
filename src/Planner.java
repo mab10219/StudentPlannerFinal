@@ -12,7 +12,8 @@ import java.util.ArrayList;
 public class Planner{
     private ArrayList<Course> courses;
     private ArrayList<Assignment> assignments;
-    
+    private int courseCount; 
+
     public Planner(){
         courses = new ArrayList<>();
         assignments = new ArrayList<>();
@@ -31,6 +32,14 @@ public class Planner{
     }
     public void addAssignment(Assignment assignment){
         assignments.add(assignment);
+    }
+
+    // add a list of courses and assignments to the planner:
+    public void addCourseList(ArrayList<Course> courseList){
+        courses.addAll(courseList);
+    }
+    public void addAssignmentList(ArrayList<Assignment> assignmentList){
+        assignments.addAll(assignmentList);
     }
 
     //removes assignment from the planner by name:

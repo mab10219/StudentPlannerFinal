@@ -1,4 +1,6 @@
 import java.time.LocalDateTime; //for the due date field
+import java.io.Serializable;
+
 /*
     * Event.java:
     * Parent class for Course.java and Assignment.java
@@ -6,7 +8,7 @@ import java.time.LocalDateTime; //for the due date field
     * Authors: Mia Bongiorno and Allison Tang
     
 */
-public class Event {
+public class Event implements Serializable {
     private String name;
     private LocalDateTime dateTime; 
     

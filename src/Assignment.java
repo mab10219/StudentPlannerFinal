@@ -6,7 +6,7 @@ import java.time.LocalDateTime; //for the due date field, track upcoming dates i
     * Authors: Mia Bongiorno and Allison Tang
     
 */
-public class Assignment extends Event {
+public class Assignment extends Event{
     private String associatedCourse; //course field to link assignment to a course (organization and filtering)
 
     public Assignment(String name, LocalDateTime dueDate, String associatedCourse){
