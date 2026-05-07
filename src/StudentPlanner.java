@@ -181,23 +181,23 @@ public class StudentPlanner {
                 System.out.print("Enter the name of the course name to delete: ");
                 String deleteName = scanner.nextLine();
 
-                try{
-                    planner.removeCourse(deleteName);
-                }catch(Exception e){
-                    System.out.println("Course not found. Please make sure to enter the course name exactly as it appears in the search results.");
-                    return;
-                }
+                boolean removed = planner.removeCourse(deleteName);
+
 
                 //delete all assignments associated with the deleted course
-                Iterator<Assignment> it = planner.getAssignments().iterator();
-                while (it.hasNext()) {
-                    Assignment a = it.next();
-                    if (a.getAssociatedCourse().equalsIgnoreCase(deleteName)) {
-                        it.remove();
+                if(removed){
+                    Iterator<Assignment> it = planner.getAssignments().iterator();
+                    while (it.hasNext()) {
+                        Assignment a = it.next();
+                        if (a.getAssociatedCourse().equalsIgnoreCase(deleteName)) {
+                            it.remove();
+                        }
                     }
+                    System.out.println("Course successfully deleted. Press enter to go back to main window.");
+                    
+                } else {
+                    System.out.println("Course not found. Press enter to go back to main window.");
                 }
-
-                System.out.println("Course sucessfully deleted. Press enter to go back to main window.");
                 scanner.nextLine();
                 
             }
@@ -205,10 +205,13 @@ public class StudentPlanner {
             else if(deleteChoice.equals("2")){
                 System.out.print("Enter the name of the assignment to delete: ");
                 String deleteName = scanner.nextLine();
-                planner.removeAssignment(deleteName);
-                System.out.println("Assignment sucessfully deleted. Press enter to go back to main window.");
+                boolean removed = planner.removeAssignment(deleteName);
+                if (removed) {
+                    System.out.println("Assignment successfully deleted. Press enter to go back to main window.");
+                } else {
+                    System.out.println("Assignment not found. Press enter to go back to main window.");
+                }
                 scanner.nextLine();
-
             }
         }
     }

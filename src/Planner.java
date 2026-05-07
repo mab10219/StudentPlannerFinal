@@ -41,23 +41,26 @@ public class Planner{
         assignments.addAll(assignmentList);
     }
 
-    //removes assignment from the planner by name:
-    public void removeAssignment(String name){
-        for (int i = 0; i <assignments.size(); i++){
-            if (assignments.get(i).getName().equalsIgnoreCase(name)){
+    //removes assignment from planner by name, returns true if successful and false if no assignment with the given name is found:
+    public boolean removeAssignment(String name) {
+        for (int i = 0; i < assignments.size(); i++) {
+            if (assignments.get(i).getName().equalsIgnoreCase(name)) {
                 assignments.remove(i);
-                return;
+                return true;
             }
         }
+        return false;
     }
+
     //removes entire course from planner by name:
-    public void removeCourse(String name){
+    public boolean removeCourse(String name){
         for(int i= 0; i <courses.size(); i++){
             if (courses.get(i).getName().equalsIgnoreCase(name)){
                 courses.remove(i);
-                return;
+                return true;
             }
         }
+        return false;
     }
    
     public void displayPlanner(){
